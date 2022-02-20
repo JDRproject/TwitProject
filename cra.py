@@ -5,12 +5,13 @@ import os
 import json
 import pandas as pd
 import re
-from collect.models import Twits
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "twitproject.settings")
 # 이제 장고를 가져와 장고 프로젝트를 사용할 수 있도록 환경을 만듭니다.
 import django
 django.setup()
+
+from collect.models import Twits
 
 # To set your environment variables in your terminal run the following line:
 # export 'BEARER_TOKEN'='<your_bearer_token>'
