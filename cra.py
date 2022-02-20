@@ -8,7 +8,7 @@ import pandas as pd
 import re
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "twitproject.settings")
-# 이제 장고를 가져와 장고 프로젝트를 사용할 수 있도록 환경을 만듭니다.
+    # 이제 장고를 가져와 장고 프로젝트를 사용할 수 있도록 환경을 만듭니다.
 import django
 django.setup()
 
@@ -74,7 +74,7 @@ def main():
             total += height
             sum_count += 1
 
-            Twits(user_id = "none", text = "test" ).save()
+            Twits(user_id = "none", text = temp ).save()
         else :
             print()
         print(temp)
