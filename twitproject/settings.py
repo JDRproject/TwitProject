@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'tweets',
         'USER' : 'db1',
         'PASSWORD' : 'db1',
-        'HOST' : '%',
+        'HOST' : 'LocalHost',
         'PORT' : '3306',
     }
 }
