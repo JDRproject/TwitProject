@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'collect.apps.CollectConfig'
+    'collect'
 
 ]
 
@@ -79,9 +79,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'tweets',
-        'USER' : 'db',
-        'PASSWORD' : 'db',
-        'HOST' : 'localhost',
+        'USER' : 'db1',
+        'PASSWORD' : 'db1',
+        'HOST' : '%',
         'PORT' : '3306',
     }
 }
