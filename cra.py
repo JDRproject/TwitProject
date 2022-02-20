@@ -62,7 +62,7 @@ def main():
     sum_count = 0
 
 
-    for i in text:
+    for i, j in zip(text, id):
         print("---")
         temp = str(i).replace('#키에서_155를_뺀_만큼_말해보자','').replace('\n',' ')
         numbers = re.findall("-?\d+", temp)
@@ -77,7 +77,7 @@ def main():
 
             print(sys.getdefaultencoding())
             print(type(temp))
-            Twits(user_id = "none", text = temp ).save()
+            Twits(user_id = str(j), text = temp ).save()
         else :
             print()
         print(temp)
