@@ -76,7 +76,14 @@ WSGI_APPLICATION = 'twitproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': BASE_DIR / 'db.mysql',
+        'NAME': 'django_twit',
+        'USER' : 'db01',
+        'PASSWORD' : 'db1',
+        'HOST' : 'localhost',
+        'PORT' : '3306',
+        'OPTIONS': {
+            'init_command': 'SET sql_mode="STRICT_TRANS_TABLES"'
+        }
     }
 }
 
