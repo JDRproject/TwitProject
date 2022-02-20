@@ -1,6 +1,7 @@
 #-*- coding:utf-8 -*-
 
 from encodings import utf_8
+import sys
 import requests
 import os
 import json
@@ -74,8 +75,9 @@ def main():
             total += height
             sum_count += 1
 
+            print(sys.getdefaultencoding())
             print(type(temp))
-           # Twits(user_id = "none", text = temp ).save()
+            #Twits(user_id = "none", text = unicode(temp, "utf-8") ).save()
         else :
             print()
         print(temp)
