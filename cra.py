@@ -1,5 +1,6 @@
 #-*- coding:utf-8 -*-
 
+from encodings import utf_8
 import requests
 import os
 import json
@@ -73,7 +74,7 @@ def main():
             total += height
             sum_count += 1
 
-            Twits(user_id = "none", text = str(i) ).save()
+            Twits(user_id = "none", text = str(i).encode(utf_8) ).save()
         else :
             print()
         print(temp)
