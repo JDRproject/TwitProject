@@ -73,7 +73,7 @@ def main():
             total += height
             sum_count += 1
 
-            Twits(user_id = "none", text = i ).save()
+            Twits(user_id = "none", text = str(i) ).save()
         else :
             print()
         print(temp)
