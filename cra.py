@@ -77,7 +77,7 @@ def main():
 
             print(sys.getdefaultencoding())
             print(type(temp))
-            #Twits(user_id = "none", text = unicode(temp, "utf-8") ).save()
+            Twits(user_id = "none", text = temp ).save()
         else :
             print()
         print(temp)
