@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'twitproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_twit',
-        'USER' : 'db01',
-        'PASSWORD' : 'db1',
+        'NAME': 'tweets',
+        'USER' : 'db',
+        'PASSWORD' : 'db',
         'HOST' : 'localhost',
         'PORT' : '3306',
         'OPTIONS': {
