@@ -6,4 +6,4 @@ class Twits(models.Model):
     text = models.TextField()
     
     def __str__(self):
-        return [self.id ,self.user_id, self.text]
+        return str([self.id ,self.user_id, self.text])
