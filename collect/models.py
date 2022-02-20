@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Twits(models.Model):
+class Tweet(models.Model):
     user_id = models.CharField(max_length=50)
     text = models.TextField()
     
