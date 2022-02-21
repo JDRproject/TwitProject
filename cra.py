@@ -1,5 +1,6 @@
 #-*- coding:utf-8 -*-
 
+from datetime import date
 from encodings import utf_8
 import sys
 import requests
@@ -7,7 +8,8 @@ import os
 import json
 import pandas as pd
 import re
-
+import datetime
+from datetime import timedelta
 
 print (sys.platform)
 
@@ -28,7 +30,7 @@ search_url = "https://api.twitter.com/2/tweets/search/recent"
 # Optional params: start_time,end_time,since_id,until_id,max_results,next_token,
 # expansions,tweet.fields,media.fields,poll.fields,place.fields,user.fields
 # query_params = {'query': 'url:"1392450565741813760" retweets_of_1392450565741813760','tweet.fields': 'author_id'}
-query_params = {'query': '#키에서_155를_뺀_만큼_말해보자 -is:retweet','expansions':'author_id', 'tweet.fields': 'author_id,created_at','user.fields': 'username','max_results' : 30}
+
 
 def bearer_oauth(r):
     """
@@ -46,46 +48,39 @@ def connect_to_endpoint(url, params):
         raise Exception(response.status_code, response.text)
     return response.json()
 
+#'start_time' : '2022-02-20T20:59:58Z' ,'end_time' : '2022-02-20T20:59:59Z','query'
+def search(start, end):
+    query_params = { 'start_time' : start ,'end_time' : end,'query': '"5 맨날땡김" #트친과_입맛궁합_알아보기 -is:retweet','expansions':'author_id', 
+ 'tweet.fields': 'author_id,created_at','user.fields': 'username','max_results' : 100}
 
-def main():
     json_response = connect_to_endpoint(search_url, query_params)
+
     
-    total = 0
-    sum_count = 0
-
-    print(json_response)
-
-    for i in json_response['data']:
-        print("---")
-        temp = str(i['text']).replace('#키에서_155를_뺀_만큼_말해보자','').replace('\n',' ')
-        numbers = re.findall("-?\d+", temp)
-        numbers = [item for item in numbers if int(item) >= -10 and int(item) <= 50]
-        
-        #print(i['text'])
-        
-        #print(i['name'])
-        #print(numbers , end='')
-        if len(numbers)>=1 :
-            height = 155+int(numbers[0])
-            #print(height)
-            total += height
-            sum_count += 1
-            #print(type(temp))
-            if sys.platform != "win32" :
-                Tweet(name = 'none', text = temp, time = '1999-01-01' ).save()
-      #  else :
-       #     print()
-        #print(temp)
     print("result_count:",end='')
     print(json_response['meta']['result_count'])
+    return json_response
 
-    if sum_count != 0 :
-        print("트위터 이용자가 주장하는 평균 키 : {0:0.2f} cm ".format(float(total/sum_count)))
 
-    #data = json.dumps(json_response, indent=4, sort_keys=True)
-    #print(type(data))
-    #data = data.encode('utf-8').decode('utf-8')
-    #print(data)
+def main():
+    for i in range(12,13) :
+        d = datetime.datetime(2022, 2, 20, hour=0, minute=0, second=0, microsecond=0)
+        d = d + datetime.timedelta(hours=i)
+        nd = d + datetime.timedelta(hours=1)
+  
+        result = d.strftime("%Y-%m-%dT%H:%M:%SZ")
+        print(result)
+        result2 = nd.strftime("%Y-%m-%dT%H:%M:%SZ")
+        print(result2)
+        json_response = search(result, result2)
+        #print(json_response)
+        if 'data' in json_response :
+            for data, user in zip(json_response['data'],json_response['includes']['users']) :
+                print(user['name'])
+                print(data['created_at'])
+                print(data['text'])
+                if sys.platform != "win32" :
+                    Tweet(name = user['name'], text = data['text'], time = data['created_at'] ).save()
+           
 
 if __name__ == "__main__":
     main()
