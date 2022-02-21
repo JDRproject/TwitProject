@@ -81,8 +81,8 @@ def main():
                 date = datetime.datetime.strptime(data['created_at'],"%Y-%m-%dT%H:%M:%S.%fZ")
                 
                 temp = twit_parser.parser(data['text'])
-                setattr(temp,'name', "temp")
-                setattr(temp,'text', data['text'])
+                setattr(temp,'name', str(user['name']).encode('utf8'))
+                setattr(temp,'text', str(data['text']).encode('utf8'))
                 setattr(temp,'time', date)
                 
             if sys.platform != "win32" :
