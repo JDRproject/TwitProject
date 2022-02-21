@@ -81,7 +81,7 @@ def main():
                 date = datetime.datetime.strptime(data['created_at'],"%Y-%m-%dT%H:%M:%S.%fZ")
                 #print(date)
                 temp = twit_parser.parser(data['text'])
-                setattr(temp,'name', user['name'])
+                setattr(temp,'name', str(user['name']))
                 setattr(temp,'text', data['text'])
                 setattr(temp,'time', date)
                 
