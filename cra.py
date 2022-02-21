@@ -11,14 +11,14 @@ import re
 import datetime
 from datetime import timedelta
 from django.utils import timezone
-
+import twit_parser
 print (sys.platform)
 
-if sys.platform != "win32" :
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "twitproject.settings")
-    import django
-    django.setup()
-    from collect.models import Tweet
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "twitproject.settings")
+import django
+django.setup()
+from collect.models import Tweet
 
 # To set your environment variables in your terminal run the following line:
 # export 'BEARER_TOKEN'='<your_bearer_token>'
@@ -76,13 +76,17 @@ def main():
         #print(json_response)
         if 'data' in json_response :
             for data, user in zip(json_response['data'],json_response['includes']['users']) :
-                print(user['name'])
-                print(data['text'])
+                #print(user['name'])
+                #print(data['text'])
                 date = datetime.datetime.strptime(data['created_at'],"%Y-%m-%dT%H:%M:%S.%fZ")
-                print(date)
-                if sys.platform != "win32" :
-                    Tweet(name = user['name'], text = data['text'], time = date ).save()
-           
+                #print(date)
+                temp = twit_parser.parser(data['text'])
+                setattr(temp,'name', user['name'])
+                setattr(temp,'text', data['text'])
+                setattr(temp,'time', date)
+                
+            if sys.platform != "win32" :
+                    temp.save()
 
 if __name__ == "__main__":
     main()
