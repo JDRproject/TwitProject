@@ -28,7 +28,7 @@ search_url = "https://api.twitter.com/2/tweets/search/recent"
 # Optional params: start_time,end_time,since_id,until_id,max_results,next_token,
 # expansions,tweet.fields,media.fields,poll.fields,place.fields,user.fields
 # query_params = {'query': 'url:"1392450565741813760" retweets_of_1392450565741813760','tweet.fields': 'author_id'}
-query_params = {'query': '#키에서_155를_뺀_만큼_말해보자 -is:retweet','expansions':'author_id', 'tweet.fields': 'author_id,created_at','user.fields': 'name','max_results' : 30}
+query_params = {'query': '#키에서_155를_뺀_만큼_말해보자 -is:retweet','expansions':'author_id', 'tweet.fields': 'author_id,created_at','user.fields': 'username','max_results' : 30}
 
 def bearer_oauth(r):
     """
@@ -53,12 +53,17 @@ def main():
     total = 0
     sum_count = 0
 
+    print(json_response)
+
     for i in json_response['data']:
-        #print("---")
+        print("---")
         temp = str(i['text']).replace('#키에서_155를_뺀_만큼_말해보자','').replace('\n',' ')
         numbers = re.findall("-?\d+", temp)
         numbers = [item for item in numbers if int(item) >= -10 and int(item) <= 50]
         
+        #print(i['text'])
+        
+        #print(i['name'])
         #print(numbers , end='')
         if len(numbers)>=1 :
             height = 155+int(numbers[0])
