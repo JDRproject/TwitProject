@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Tweet(models.Model):
 
-    name = models.CharField(max_length=50)
+    name = models.TextField(max_length=50)
     text = models.TextField(null=True)
     time = models.DateTimeField(null=True)
     grade_rawmeat = models.IntegerField(default=-1, null=True)

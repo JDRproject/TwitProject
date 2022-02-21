@@ -87,6 +87,8 @@ def main():
                 
                 if sys.platform != "win32" :
                         temp.save()
+                type(temp.name)
+                print(temp.text)
                
 
 if __name__ == "__main__":
