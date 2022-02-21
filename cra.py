@@ -78,9 +78,11 @@ def main():
             for data, user in zip(json_response['data'],json_response['includes']['users']) :
                 print(user['name'])
                 print(data['text'])
+                date = datetime.datetime.strptime(data['created_at'],"%Y-%m-%dT%H:%M:%S.%fZ")
+                print(date)
                 if sys.platform != "win32" :
                     print(timezone.localtime(data['created_at']))
-                    Tweet(name = user['name'], text = data['text'], time = data['created_at'] ).save()
+                    Tweet(name = user['name'], text = data['text'], time = date ).save()
            
 
 if __name__ == "__main__":
