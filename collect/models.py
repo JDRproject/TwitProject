@@ -9,4 +9,4 @@ class Tweet(models.Model):
 
     
     def __str__(self):
-        return str([self.id ,self.user_id, self.text])
+        return str([self.name , self.text])
