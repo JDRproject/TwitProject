@@ -10,6 +10,7 @@ import pandas as pd
 import re
 import datetime
 from datetime import timedelta
+from django.utils import timezone
 
 print (sys.platform)
 
@@ -76,9 +77,9 @@ def main():
         if 'data' in json_response :
             for data, user in zip(json_response['data'],json_response['includes']['users']) :
                 print(user['name'])
-                print(data['created_at'])
                 print(data['text'])
                 if sys.platform != "win32" :
+                    print(timezone.localtime(data['created_at']))
                     Tweet(name = user['name'], text = data['text'], time = data['created_at'] ).save()
            
 
