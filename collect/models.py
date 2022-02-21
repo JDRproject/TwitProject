@@ -23,6 +23,7 @@ class Tweet(models.Model):
     grade_odeng = models.IntegerField(default=-1,null=True)
     grade_lamb = models.IntegerField(default=-1,null=True)
     grade_ddukboki = models.IntegerField(default=-1,null=True)
+    test = models.IntegerField(default=-1,null=True)
 
     
     def __str__(self):
