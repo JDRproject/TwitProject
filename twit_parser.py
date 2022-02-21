@@ -35,7 +35,7 @@ def parser(input_str) :
         "grade_lamb" ,
         "grade_ddukboki" ,]
     input_str = input_str.replace('\n','')
-    print(input_str)
+    #print(input_str)
     for i in range(0,len(colums)-1):
         #print(colums[i])
         search_str = colums[i]+ ':(.*?)' + colums[i+1]
@@ -48,7 +48,7 @@ def parser(input_str) :
             setattr(result, db_colums[i], -1)
 
 
-    print(result.grade_altang)
+    #print(result.grade_altang)
     return result
 
 def main() :
