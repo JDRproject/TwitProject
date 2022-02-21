@@ -72,7 +72,7 @@ def main():
             sum_count += 1
             #print(type(temp))
             if sys.platform != "win32" :
-                Tweet(user_id = str(i['name']), text = temp ).save()
+                Tweet(name = 'none', text = temp, time = '0' ).save()
       #  else :
        #     print()
         #print(temp)
