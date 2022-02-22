@@ -13,7 +13,7 @@ from datetime import timedelta
 from django.utils import timezone
 import twit_parser
 print (sys.platform)
-
+import chardet
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "twitproject.settings")
 import django
@@ -87,8 +87,10 @@ def main():
                 
                 if sys.platform != "win32" :
                         temp.save()
-                type(temp.name)
-                print(temp.text)
+                print(temp.name)
+                #print(chardet.detect(user['name'].encode()))
+                #print(chardet.detect(temp.text.encode()))
+                #print(type(str(temp.text)))
                
 
 if __name__ == "__main__":
